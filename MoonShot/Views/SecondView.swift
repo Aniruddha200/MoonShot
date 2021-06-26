@@ -35,29 +35,38 @@ struct SecondView: View {
 							
 						
 						
-						
 						Section(header: Text("Crew Members")){
-							HStack(spacing: 10){
+							List{
 								ForEach(mission.crew){ person in
-									VStack{
+									HStack{
 										
-										ZStack{
 											Image("\(person.name)")
 												.resizable()
-												.frame(width: 100, height: 75)
+												.frame(width: 65, height: 40)
 												.clipShape(RoundedRectangle(cornerRadius: 20))
+												
 											
 											
-											NavigationLink(destination: ThirdView(of: person)){
-												Text("")
-													.frame(width: 75, height: 65)
+											
+											VStack(alignment: .leading){
+												Text("\(person.name.capitalized)")
+													.font(.headline)
+													.fontWeight(.black)
+												
+												Text("\(person.role)")
+													.font(.subheadline)
+													.fontWeight(.medium)
+													
 											}
+											.frame(height: 50)
+											.layoutPriority(1)
 											
-										}
+											
+											NavigationLink("", destination: ThirdView(of: person))
 										
-										Text("\(person.name.capitalized)")
-											.font(.subheadline)
-											.fontWeight(.light)
+											
+										
+										
 										
 										
 									}
@@ -72,20 +81,19 @@ struct SecondView: View {
 
 					
 					
+						ScrollView(.vertical){
+							Text(mission.description)
+								.font(.title3)
+								.padding()
+						}
+						.frame(minHeight: 310)
 					
-					
-					ScrollView(.vertical){
-						Text(mission.description)
-							.font(.title3)
-							.padding()
-					}
-					
-					Spacer()
+						Spacer()
 					
 					
 				}
 			}
-			.navigationBarTitle("Summary", displayMode: .inline)
+			.navigationBarTitle("Apollo\(mission.id)", displayMode: .inline)
 			
 		}
 		

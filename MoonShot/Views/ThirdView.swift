@@ -31,9 +31,6 @@ struct ThirdView: View {
 					.font(.title)
 					.fontWeight(.black)
 				
-				Text("\(person.role)")
-					.font(.title3)
-					.fontWeight(.black)
 				
 				ScrollView(.vertical){
 					Text("\(personInfo?.description ?? "N/A")")
